@@ -24,11 +24,11 @@ const getJokes = (e) => {
               <li>${value.joke}</li>
             `;
           });
-  
-          document.getElementById('jokes').innerHTML = output;
         } else {
           output += 'Something went wrong.';
         }
+        
+        document.getElementById('jokes').innerHTML = output;
         
       } else {
         console.log('Error parsing data...');
