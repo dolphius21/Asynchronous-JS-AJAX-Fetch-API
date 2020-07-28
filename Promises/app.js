@@ -3,11 +3,20 @@ const posts = [
   {title: 'Post Two', body: 'This is post two'}
 ]
 
-const createPost = (post, callback) => {
-  setTimeout(() => {
-    posts.push(post);
-    callback();
-  }, 2000);
+const createPost = (post) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      posts.push(post);
+
+      const error = false;
+
+      if (!error) {
+        resolve();
+      } else {
+        reject('Error: Something went wrong!');
+      }
+    }, 2000);
+  });
 };
 
 const getPosts = () => {
@@ -20,4 +29,8 @@ const getPosts = () => {
   }, 1000);
 };
 
-createPost({title: 'Post Three', body: 'This is post three'}, getPosts);
+createPost({title: 'Post Three', body: 'This is post three'})
+  .then(getPosts)
+  .catch((error) => {
+    console.log(error);
+  });
